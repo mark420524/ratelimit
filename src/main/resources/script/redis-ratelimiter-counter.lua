@@ -2,11 +2,12 @@
 local key = KEYS[1];
 local limit = tonumber(ARGV[1]);
 local expire = tonumber(ARGV[2]);
-
+print(key,limit,expire)
 local hasKey = redis.call('EXISTS',key);
 
 if hasKey == 1 then
     local value = tonumber(redis.call('GET',key));
+    print('exists,value',value)
     if value >= limit then
         return -1;
     end
